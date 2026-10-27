@@ -965,4 +965,4 @@ static ErlNifFunc nif_funcs[] = {
   {"release", 1, release, ERL_NIF_DIRTY_JOB_IO_BOUND}
 };
 
-ERL_NIF_INIT(Elixir.Duckdbex.NIF, nif_funcs, on_load, on_reload, on_upgrade, NULL)
+ERL_NIF_INIT(duckdbex_nif, nif_funcs, on_load, on_reload, on_upgrade, NULL)

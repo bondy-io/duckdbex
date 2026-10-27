@@ -39,3 +39,6 @@ duckdbex-*.tar
 CLAUDE.md
 notes/
 my_database.duckdb
+
+# NIF build output (rebar3 pre-hook writes priv/ into the source tree)
+/priv/

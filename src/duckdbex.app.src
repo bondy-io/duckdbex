@@ -1,0 +1,10 @@
+{application, duckdbex,
+ [{description, "DuckDB NIF for Erlang and Elixir"},
+  {vsn, "0.7.0"},
+  {registered, []},
+  {applications, [kernel, stdlib]},
+  {modules, []},
+  {licenses, ["MIT"]},
+  {links, [{"GitHub", "https://github.com/AlexR2D2/duckdbex"},
+           {"Changelog", "https://github.com/AlexR2D2/duckdbex/blob/main/CHANGELOG.md"}]}
+ ]}.
