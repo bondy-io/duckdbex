@@ -1,6 +1,6 @@
 %% DuckDB API for Erlang.
 %%
-%% Thin wrapper over the duckdb_nif NIF. Pure Erlang: the package builds
+%% Thin wrapper over the 'Elixir.Duckdbex.NIF' NIF stubs. Pure Erlang: the package builds
 %% with rebar3 and runs without Elixir. Elixir consumers get the same API
 %% through the Duckdbex facade module (lib/duckdbex.ex).
 -module(duckdb).
@@ -56,130 +56,130 @@
 %% Config
 
 create_config() ->
-    duckdb_nif:create_config().
+    'Elixir.Duckdbex.NIF':create_config().
 
 set_config_option(Config, Name, Value)
     when is_reference(Config) andalso (is_binary(Name) orelse is_atom(Name)) ->
-    duckdb_nif:set_config_option(Config, Name, Value).
+    'Elixir.Duckdbex.NIF':set_config_option(Config, Name, Value).
 
 get_config_options() ->
-    duckdb_nif:get_config_options().
+    'Elixir.Duckdbex.NIF':get_config_options().
 
 release(Resource) when is_reference(Resource) ->
-    duckdb_nif:release(Resource).
+    'Elixir.Duckdbex.NIF':release(Resource).
 
 %% Database and connections
 
 open() ->
-    duckdb_nif:open(<<":memory:">>, nil).
+    'Elixir.Duckdbex.NIF':open(<<":memory:">>, nil).
 
 open(Path) when is_binary(Path) ->
-    duckdb_nif:open(Path, nil);
+    'Elixir.Duckdbex.NIF':open(Path, nil);
 open(Config) when is_reference(Config) ->
-    duckdb_nif:open(<<":memory:">>, Config).
+    'Elixir.Duckdbex.NIF':open(<<":memory:">>, Config).
 
 open(Path, Config) when is_binary(Path), is_reference(Config) orelse Config =:= nil ->
-    duckdb_nif:open(Path, Config).
+    'Elixir.Duckdbex.NIF':open(Path, Config).
 
 connection(Db) when is_reference(Db) ->
-    duckdb_nif:connection(Db).
+    'Elixir.Duckdbex.NIF':connection(Db).
 
 %% Queries
 
 query(Conn, Sql) when is_reference(Conn), is_binary(Sql) ->
-    duckdb_nif:query(Conn, Sql).
+    'Elixir.Duckdbex.NIF':query(Conn, Sql).
 
 query(Conn, Sql, Args)
     when is_reference(Conn), is_binary(Sql), is_list(Args) orelse is_map(Args) ->
-    duckdb_nif:query(Conn, Sql, Args).
+    'Elixir.Duckdbex.NIF':query(Conn, Sql, Args).
 
 prepare_statement(Conn, Sql) when is_reference(Conn), is_binary(Sql) ->
-    duckdb_nif:prepare_statement(Conn, Sql).
+    'Elixir.Duckdbex.NIF':prepare_statement(Conn, Sql).
 
 execute_statement(Stmt) when is_reference(Stmt) ->
-    duckdb_nif:execute_statement(Stmt).
+    'Elixir.Duckdbex.NIF':execute_statement(Stmt).
 
 execute_statement(Stmt, Args)
     when is_reference(Stmt), is_list(Args) orelse is_map(Args) ->
-    duckdb_nif:execute_statement(Stmt, Args).
+    'Elixir.Duckdbex.NIF':execute_statement(Stmt, Args).
 
 get_named_parameters(Stmt) when is_reference(Stmt) ->
-    duckdb_nif:get_named_parameters(Stmt).
+    'Elixir.Duckdbex.NIF':get_named_parameters(Stmt).
 
 %% Transactions
 
 begin_transaction(Conn) when is_reference(Conn) ->
-    duckdb_nif:begin_transaction(Conn).
+    'Elixir.Duckdbex.NIF':begin_transaction(Conn).
 
 commit(Conn) when is_reference(Conn) ->
-    duckdb_nif:commit(Conn).
+    'Elixir.Duckdbex.NIF':commit(Conn).
 
 rollback(Conn) when is_reference(Conn) ->
-    duckdb_nif:rollback(Conn).
+    'Elixir.Duckdbex.NIF':rollback(Conn).
 
 set_auto_commit(Conn, AutoCommit) when is_reference(Conn), is_boolean(AutoCommit) ->
-    duckdb_nif:set_auto_commit(Conn, AutoCommit).
+    'Elixir.Duckdbex.NIF':set_auto_commit(Conn, AutoCommit).
 
 is_auto_commit(Conn) when is_reference(Conn) ->
-    duckdb_nif:is_auto_commit(Conn).
+    'Elixir.Duckdbex.NIF':is_auto_commit(Conn).
 
 has_active_transaction(Conn) when is_reference(Conn) ->
-    duckdb_nif:has_active_transaction(Conn).
+    'Elixir.Duckdbex.NIF':has_active_transaction(Conn).
 
 %% Results
 
 columns(Result) when is_reference(Result) ->
-    duckdb_nif:columns(Result).
+    'Elixir.Duckdbex.NIF':columns(Result).
 
 fetch_chunk(Result) when is_reference(Result) ->
-    duckdb_nif:fetch_chunk(Result).
+    'Elixir.Duckdbex.NIF':fetch_chunk(Result).
 
 fetch_all(Result) when is_reference(Result) ->
-    duckdb_nif:fetch_all(Result).
+    'Elixir.Duckdbex.NIF':fetch_all(Result).
 
 %% Appender
 
 appender(Conn, Table) when is_reference(Conn), is_binary(Table) ->
-    duckdb_nif:appender(Conn, Table).
+    'Elixir.Duckdbex.NIF':appender(Conn, Table).
 
 appender(Conn, Schema, Table)
     when is_reference(Conn), is_binary(Schema), is_binary(Table) ->
-    duckdb_nif:appender(Conn, Schema, Table).
+    'Elixir.Duckdbex.NIF':appender(Conn, Schema, Table).
 
 appender_add_row(Appender, Row) when is_reference(Appender), is_list(Row) ->
-    duckdb_nif:appender_add_row(Appender, Row).
+    'Elixir.Duckdbex.NIF':appender_add_row(Appender, Row).
 
 appender_add_rows(Appender, Rows) when is_reference(Appender), is_list(Rows) ->
-    duckdb_nif:appender_add_rows(Appender, Rows).
+    'Elixir.Duckdbex.NIF':appender_add_rows(Appender, Rows).
 
 appender_flush(Appender) when is_reference(Appender) ->
-    duckdb_nif:appender_flush(Appender).
+    'Elixir.Duckdbex.NIF':appender_flush(Appender).
 
 appender_close(Appender) when is_reference(Appender) ->
-    duckdb_nif:appender_close(Appender).
+    'Elixir.Duckdbex.NIF':appender_close(Appender).
 
 %% Introspection
 
 library_version() ->
-    duckdb_nif:library_version().
+    'Elixir.Duckdbex.NIF':library_version().
 
 library_version(StorageFormatVersion) when is_integer(StorageFormatVersion) ->
-    duckdb_nif:library_version(StorageFormatVersion).
+    'Elixir.Duckdbex.NIF':library_version(StorageFormatVersion).
 
 storage_format_version() ->
-    duckdb_nif:storage_format_version().
+    'Elixir.Duckdbex.NIF':storage_format_version().
 
 source_id() ->
-    duckdb_nif:source_id().
+    'Elixir.Duckdbex.NIF':source_id().
 
 platform() ->
-    duckdb_nif:platform().
+    'Elixir.Duckdbex.NIF':platform().
 
 number_of_threads(Db) ->
-    duckdb_nif:number_of_threads(Db).
+    'Elixir.Duckdbex.NIF':number_of_threads(Db).
 
 extension_is_loaded(Db, ExtensionName) ->
-    duckdb_nif:extension_is_loaded(Db, ExtensionName).
+    'Elixir.Duckdbex.NIF':extension_is_loaded(Db, ExtensionName).
 
 %% Hugeint helpers
 

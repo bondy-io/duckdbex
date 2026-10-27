@@ -1,7 +1,14 @@
 %% @private
-%% NIF stubs for the DuckDB NIF (priv/duckdb_nif.so).
-%% Pure Erlang: no Elixir dependency at build or run time.
--module(duckdb_nif).
+%% Pure-Erlang NIF stubs for the DuckDB NIF (priv/duckdb_nif.so).
+%%
+%% The module name is not a typo: the NIF registers itself as
+%% 'Elixir.Duckdbex.NIF' (see ERL_NIF_INIT in c_src/nif.cpp), and the NIF
+%% binds to whatever module loads it. Keeping the upstream module name means
+%% this fork does not need to modify any upstream file. The Erlang compiler
+%% requires the file name to equal the module name, hence the dotted file
+%% name; the beam is Elixir.Duckdbex.NIF.beam, exactly what the Elixir side
+%% produces from lib/duckdbex/nif.ex.
+-module('Elixir.Duckdbex.NIF').
 
 -on_load(init/0).
 
