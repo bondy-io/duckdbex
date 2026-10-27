@@ -12,4 +12,11 @@ cd "$(dirname "$0")/.."
 
 ERTS_INCLUDE_DIR="$(erl -noshell -eval 'io:format("~ts/erts-~ts/include/", [code:root_dir(), erlang:system_info(version)]).' -s init stop)"
 
+# The Makefile's first target is $(PRIV_DIR), not `all` (elixir_make passes
+# `all` explicitly via make_targets). Default to `all` so a plain invocation
+# extracts the vendored DuckDB sources and builds the NIF.
+if [ $# -eq 0 ]; then
+    set -- all
+fi
+
 exec make MIX_APP_PATH="$PWD" ERTS_INCLUDE_DIR="$ERTS_INCLUDE_DIR" "$@"
