@@ -1,7 +1,7 @@
 %% @private
 %% NIF stubs for the DuckDB NIF (priv/duckdb_nif.so).
 %% Pure Erlang: no Elixir dependency at build or run time.
--module(duckdbex_nif).
+-module(duckdb_nif).
 
 -on_load(init/0).
 
